@@ -36,10 +36,8 @@ function SMODS.INIT.CavalierTarotCard()
     sprite_deck2:register()
     local sprite_centers = SMODS.Sprite:new("centers", cavalier_mod.path, "Enhancers.png", 71, 95, "asset_atli")
     sprite_centers:register()
-    local sprite_joker = SMODS.Sprite:new("Joker", cavalier_mod.path, "Jokers.png", 71, 95, "asset_atli")
-    sprite_joker:register()
 
-    -- add new challenge
+    --[[ add new challenge
     local challenge_test = {
         name = 'French Tarot Test',
         id = 'c_cavalier_1',
@@ -79,7 +77,27 @@ function SMODS.INIT.CavalierTarotCard()
     }
     table.insert(G.CHALLENGES, challenge_test)
     G.localization.misc["challenge_names"]["c_cavalier_1"] = "French Tarot Test"
+    ]]--
 
+    -- Add new english text
+    G.localization.misc["ranks"]["Cavalier"] = "Cavalier"
+
+    -- Reload initialization to add the new card rank and deck
+    G:init_item_prototypes()
+end
+
+
+-- game.lua
+local init_item_prototypesRef = G.init_item_prototypes
+function G:init_item_prototypes()
+    init_item_prototypesRef(self)
+
+    -- add new rank
+    G.P_CARDS.H_C = {name = "Cavalier of Hearts",value = 'Cavalier', suit = 'Hearts', pos = {x=13,y=0}}
+    G.P_CARDS.C_C = {name = "Cavalier of Clubs",value = 'Cavalier', suit = 'Clubs', pos = {x=13,y=1}}
+    G.P_CARDS.D_C = {name = "Cavalier of Diamonds",value = 'Cavalier', suit = 'Diamonds', pos = {x=13,y=2}}
+    G.P_CARDS.S_C = {name = "Cavalier of Spades",value = 'Cavalier', suit = 'Spades', pos = {x=13,y=3}}
+    
     -- add new deck
     local loc_def = {
         ["name"]="Tarrot Deck",
@@ -92,78 +110,6 @@ function SMODS.INIT.CavalierTarotCard()
     }
     local absolute = SMODS.Deck:new("Tarot Deck", "b_tarot_deck", {tarot = true, vouchers = {'v_tarot_merchant','v_tarot_tycoon', 'v_crystal_ball'}, consumables = {'c_magician', 'c_world', 'c_fool'}}, {x = 0, y = 5}, loc_def)
     absolute:register()
-
-    -- Add new english text
-    G.localization.misc["ranks"]["Cavalier"] = "Cavalier"
-    G.localization.descriptions.Joker["j_stable"] = {
-        name = "Stable",
-        text = {
-            "Sell this Joker to",
-            "spawn 4 Cavalier",
-        }
-    }
-
-    -- Reload initialization to add the new card rank
-    G:init_item_prototypes()
-end
-
-
--- game.lua
-local init_item_prototypesRef = G.init_item_prototypes
-function G:init_item_prototypes()
-    init_item_prototypesRef(self)
-
-    G.P_CARDS.H_C = {name = "Cavalier of Hearts",value = 'Cavalier', suit = 'Hearts', pos = {x=13,y=0}}
-    G.P_CARDS.C_C = {name = "Cavalier of Clubs",value = 'Cavalier', suit = 'Clubs', pos = {x=13,y=1}}
-    G.P_CARDS.D_C = {name = "Cavalier of Diamonds",value = 'Cavalier', suit = 'Diamonds', pos = {x=13,y=2}}
-    G.P_CARDS.S_C = {name = "Cavalier of Spades",value = 'Cavalier', suit = 'Spades', pos = {x=13,y=3}}
-    
-    -- Add joker
-    local jokers = {
-        j_stable = {
-            order = 0,
-            unlocked = true,
-            discovered = true,
-            blueprint_compat = false,
-            eternal_compat = true,
-            rarity = 1,
-            cost = 8,
-            name = "Stable",
-            set = "Joker",
-            config = { extra = {}},
-            pos = { x = 0, y = 16 }
-        },
-    }
-    for k, v in pairs(jokers) do
-        v.key = k
-        v.order = #G.P_CENTER_POOLS['Joker'] + 1
-        G.P_CENTERS[k] = v
-        table.insert(G.P_CENTER_POOLS['Joker'], v)
-    end
-
-    -- Update localization
-    for g_k, group in pairs(G.localization) do
-        if g_k == 'descriptions' then
-            for _, set in pairs(group) do
-                for _, center in pairs(set) do
-                    center.text_parsed = {}
-                    for _, line in ipairs(center.text) do
-                        center.text_parsed[#center.text_parsed + 1] = loc_parse_string(line)
-                    end
-                    center.name_parsed = {}
-                    for _, line in ipairs(type(center.name) == 'table' and center.name or { center.name }) do
-                        center.name_parsed[#center.name_parsed + 1] = loc_parse_string(line)
-                    end
-                    if center.unlock then
-                        center.unlock_parsed = {}
-                        for _, line in ipairs(center.unlock) do
-                            center.unlock_parsed[#center.unlock_parsed + 1] = loc_parse_string(line)
-                        end
-                    end
-                end
-            end
-        end
-    end
 
 end
 
