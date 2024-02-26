@@ -2,8 +2,7 @@
  
 ## Description
 This mod adds a new card rank to the game: [Cavalier](https://en.wikipedia.org/wiki/Knight_(playing_card)). From the game of [French Tarot](https://en.wikipedia.org/wiki/French_Tarot), this card value is between Jack and Queen.
-Cavaliers are not present on vanilla deck, but can be acquired in standard booster packs or with consumable.
-It can optionally be used in straight between Jack and Queen.
+It's an optional card in straights, not present in vanilla decks, that can be acquired in standard booster packs or with consumable.
 
 With it, comes the Tarot Deck. It start with 4 Cavaliers, Tarot Merchant and Tarot Tycoon vouchers, The Magician, The World and The Fool (the 3 oudlers of French Tarot), but with 1 Joker slot less.
 
