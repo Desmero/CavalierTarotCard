@@ -37,50 +37,22 @@ function SMODS.INIT.CavalierTarotCard()
     local sprite_centers = SMODS.Sprite:new("centers", cavalier_mod.path, "Enhancers.png", 71, 95, "asset_atli")
     sprite_centers:register()
 
-    --[[ add new challenge
-    local challenge_test = {
-        name = 'French Tarot Test',
-        id = 'c_cavalier_1',
-        rules = {
-            custom = {
-            },
-            modifiers = {
-                {id = 'consumable_slots', value = 10},
-                {id = 'dollars', value = 100},
-            }
-        },
-        jokers = {
-            {id = 'j_smiley'},
-            {id = 'j_four_fingers'},
-            {id = 'j_shortcut'},
-        },
-        consumeables = {
-            {id = 'c_familiar'},
-            {id = 'c_sigil'},
-            {id = 'c_ouija'},
-        },
-        vouchers = {
-        },
-        deck = {
-            cards = {{s='D',r='A',},{s='D',r='A',},{s='D',r='T',},{s='D',r='T',},{s='D',r='J',},{s='D',r='J',},{s='D',r='C',},{s='D',r='C',},{s='D',r='Q',},{s='D',r='Q',},{s='D',r='K',},{s='D',r='K',},{s='C',r='A',},{s='C',r='A',},{s='C',r='T',},{s='C',r='T',},{s='C',r='J',},{s='C',r='J',},{s='C',r='C',},{s='C',r='C',},{s='C',r='Q',},{s='C',r='Q',},{s='C',r='K',},{s='C',r='K',},{s='H',r='A',},{s='H',r='A',},{s='H',r='T',},{s='H',r='T',},{s='H',r='J',},{s='H',r='J',},{s='H',r='C',},{s='H',r='C',},{s='H',r='Q',},{s='H',r='Q',},{s='H',r='K',},{s='H',r='K',},{s='S',r='A',},{s='S',r='A',},{s='S',r='T',},{s='S',r='T',},{s='S',r='J',},{s='S',r='J',},{s='S',r='C',},{s='S',r='C',},{s='S',r='Q',},{s='S',r='Q',},{s='S',r='K',},{s='S',r='K',}},
-            type = 'Challenge Deck',
-            keepCavalier = true
-        },
-        restrictions = {
-            banned_cards = {
-            },
-            banned_tags = {
-            },
-            banned_other = {
-            }
-        }
-    }
-    table.insert(G.CHALLENGES, challenge_test)
-    G.localization.misc["challenge_names"]["c_cavalier_1"] = "French Tarot Test"
-    ]]--
-
     -- Add new english text
     G.localization.misc["ranks"]["Cavalier"] = "Cavalier"
+
+    -- add new deck
+    local loc_def = {
+        ["name"]="Tarrot Deck",
+        ["text"]={
+            [1]="{C:red}-1{} Joker slot",
+            [2]="Start run with",
+            [3]="{C:attention}4 cavaliers{}, the {C:tarot}3 oudlers{},",
+            [4]="{C:tarot,T:v_tarot_merchant}Tarot Merchant{}, {C:tarot,T:v_tarot_tycoon}Tarot Tycoon{},",
+            [5]="and {C:planet,T:v_crystal_ball}Crystal Ball{} vouchers",
+        },
+    }
+    local absolute = SMODS.Deck:new("Tarot Deck", "b_tarot_deck", {tarot = true, joker_slot = -1, vouchers = {'v_tarot_merchant','v_tarot_tycoon', 'v_crystal_ball'}, consumables = {'c_magician', 'c_world', 'c_fool'}}, {x = 0, y = 5}, loc_def)
+    absolute:register()
 
     -- Reload initialization to add the new card rank and deck
     G:init_item_prototypes()
@@ -98,19 +70,7 @@ function G:init_item_prototypes()
     G.P_CARDS.D_C = {name = "Cavalier of Diamonds",value = 'Cavalier', suit = 'Diamonds', pos = {x=13,y=2}}
     G.P_CARDS.S_C = {name = "Cavalier of Spades",value = 'Cavalier', suit = 'Spades', pos = {x=13,y=3}}
     
-    -- add new deck
-    local loc_def = {
-        ["name"]="Tarrot Deck",
-        ["text"]={
-            [1]="Start run with",
-            [2]="{C:attention}4 cavaliers{}, the {C:tarot}3 oudlers{},",
-            [3]="{C:tarot,T:v_tarot_merchant}Tarot Merchant{}, {C:tarot,T:v_tarot_tycoon}Tarot Tycoon{},",
-            [4]="and {C:planet,T:v_crystal_ball}Crystal Ball{} vouchers",
-        },
-    }
-    local absolute = SMODS.Deck:new("Tarot Deck", "b_tarot_deck", {tarot = true, vouchers = {'v_tarot_merchant','v_tarot_tycoon', 'v_crystal_ball'}, consumables = {'c_magician', 'c_world', 'c_fool'}}, {x = 0, y = 5}, loc_def)
-    absolute:register()
-
+    SMODS.injectDecks()
 end
 
 local init_game_objectRef = G.init_game_object
