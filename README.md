@@ -1,4 +1,4 @@
-# CavalierTarotCard
+# CavalierTarotCard Balatro Mod
  
 ## Description
 This mod adds a new rank to the game: [Cavalier](https://en.wikipedia.org/wiki/Knight_(playing_card)). From the game of French Tarot, this card value is between Jack and Queen.
