@@ -7,6 +7,8 @@ It can optionally be used in straight between Jack and Queen.
 
 With it, comes the Tarot Deck. It start with 4 Cavaliers, Tarot Merchant and Tarot Tycoon vouchers, The Magician, The World and The Fool (the 3 oudlers of [French Tarot](https://en.wikipedia.org/wiki/French_Tarot)), but with 1 Joker slot less.
 
-## How to run
+## How to Install
 This mod requires the [Steamodded Mod loader](https://github.com/Steamopollys/Steamodded) at version 0.6.0 or higher.
-To install, download the zip file and unzip it in the `C:\Users\USER\AppData\Roaming\Balatro\Mods` directory.
+- Go to the [realease page](https://github.com/Desmero/CavalierTarotCard/releases) and download the zip file of the latest version
+- Unzip the file in the `C:\Users\USER\AppData\Roaming\Balatro\Mods` directory.
+- Launch the game
