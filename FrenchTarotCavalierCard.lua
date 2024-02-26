@@ -1,8 +1,8 @@
 --- STEAMODDED HEADER
---- MOD_NAME: Cavalier Tarot Card
---- MOD_ID: CavalierTarotCard
+--- MOD_NAME: French Tarot Cavalier Card
+--- MOD_ID: FrenchTarotCavalierCard
 --- MOD_AUTHOR: [Desmero]
---- MOD_DESCRIPTION: Add the optional Cavalier between Jack and Queen
+--- MOD_DESCRIPTION: Add the card rank Cavalier from the game of French Tarot
 
 ----------------------------------------------
 ------------MOD CODE -------------------------
@@ -27,9 +27,9 @@
         function G.UIDEF.challenge_description_tab(args)
 ]]--
 
-function SMODS.INIT.CavalierTarotCard()
+function SMODS.INIT.FrenchTarotCavalierCard()
     -- Add new sprite
-    local cavalier_mod = SMODS.findModByID("CavalierTarotCard")
+    local cavalier_mod = SMODS.findModByID("FrenchTarotCavalierCard")
     local sprite_deck = SMODS.Sprite:new("cards_1", cavalier_mod.path, "8BitDeck.png", 71, 95, "asset_atli")
     sprite_deck:register()
     local sprite_deck2 = SMODS.Sprite:new("cards_2", cavalier_mod.path, "8BitDeck_opt2.png", 71, 95, "asset_atli")
@@ -42,7 +42,7 @@ function SMODS.INIT.CavalierTarotCard()
 
     -- add new deck
     local loc_def = {
-        ["name"]="Tarrot Deck",
+        ["name"]="French Tarrot Deck",
         ["text"]={
             [1]="{C:red}-1{} Joker slot",
             [2]="Start run with",
